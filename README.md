@@ -14,7 +14,7 @@ that mainly
 - with an *intuitive UI*.
 
 Unlike *[churchtools](http://churchtools.de) or Microsoft Office* we have
-- *seemless integration into the environment (Contacts, Mail*, and
+- *seemless integration into the environment (Contacts, Mail)*, and
 - *extendability through a restful API and pluggable, self-written modules*.
 
 ## Why "couchrp"?
