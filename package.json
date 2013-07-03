@@ -1,0 +1,30 @@
+{
+  "name": "couchrp",
+  "version": "0.0.1",
+  "author": "golden ratio software <info@goldenratiosoftware.de>",
+  "description": "Just lean back and let this thing do his work. You can easily plan the resources of your church, club or association with no effort.",
+  "contributors": [
+    {
+      "name": "Jonas Weber",
+      "email": "jonas@goldenratiosoftware.de",
+      "twitter": "a_jaguar"
+    },
+    {
+      "name": "Dominik Schreiber",
+      "email": "dominik@goldenratiosoftware.de",
+      "twitter": "domischreib"
+    }
+  ],
+  "main": "couchrp.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goldenratiosoftware/couchrp.git"
+  },
+  "dependencies": {
+    "jsDAV": "0.3.2",
+    "express": "3.3.1"
+  },
+  "engines": {
+    "node": ">=0.8.3"
+  }
+}
