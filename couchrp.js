@@ -1,36 +1,50 @@
-var express = require('express')
-  , url = require('url')
+var express = require( 'express' )
+  , url = require( 'url' )
 
-  , main = express()
-  , webdav = express()
-  , webdavPort = 8000
   , app = express()
-  , appPort = 80
+  , vhost = express()
+  , vhostPort = 1337
 
-  , jsdavServer = require('jsDAV/lib/DAV/server')
-  , jsdav = require('jsDAV/lib/jsdav')
-  , jsdavLocksBackendFS = require('jsDAV/lib/DAV/plugins/locks/fs')
-  , jsdavPort = 8000;
+  , api = require( './routes/api' );
 
 
-main.get('/', function(req, res) {
-  res.end('Hello World!');
+app.configure(function() {
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(require('less-middleware')({ src: __dirname + '/assets', compress: true }));
+  app.use(express.static(__dirname + '/assets'));
 });
 
 
-webdav.all('*', function(req, res) {
-  res.redirect(req.protocol + '://' + req.host + ':' + webdavPort);
+app.get(  '/api', api.methods );
+
+app.get(  '/api/user', api.readUsers );
+app.post( '/api/user', api.createUser );
+app.get(  '/api/user/:username', api.readUser );
+app.put(  '/api/user/:username', api.updateUser );
+app.del(  '/api/user/:username', api.deleteUser );
+
+app.get(  '/api/master', api.readMasterDataSets );
+app.post( '/api/master', api.createMasterData );
+app.get(  '/api/master/:data', api.readMasterData );
+app.put(  '/api/master/:data', api.updateMasterData );
+app.del(  '/api/master/:data', api.deleteMasterData );
+app.put(  '/api/master/:data/:field', api.updateMasterDataField );
+app.del(  '/api/master/:data/:field', api.removeMasterDataField );
+
+app.all( '((?!(js|css|img|partials|api).))*$', function( req, res ) {
+  res.sendfile( 'assets/index.html' );
+} );
+
+
+vhost.configure(function() {
+  vhost.use(express.logger('dev'));
 });
 
 
-jsdav.createServer({
-  node: __dirname + '/dav/public',
-  locksBackend: jsdavLocksBackendFS.new(__dirname + '/dav/data')
-}, webdavPort);
+vhost.use(express.vhost('*', app));
 
 
-app.use(express.vhost('webdav.*', webdav));
-app.use(express.vhost('*', main));
-
-app.listen(appPort);
-console.log('vhost server running on http://127.0.0.1:' + appPort);
+vhost.listen(vhostPort);
+console.info('[info] vhost server running on http://127.0.0.1:' + vhostPort);

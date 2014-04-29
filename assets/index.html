@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html ng-app="couchrp" ng-controller="MetaCtrl">
+
+<head>
+<title ng-bind-template="{{ Meta.title() }} | couchrp "></title>
+
+<base href="/"/>
+
+<meta charset="utf-8"/>
+<meta name="fragment" content="!"/>
+
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,400,700,400italic"/>
+
+<script src="js/angular.min.js"></script>
+<script src="js/couchrp.js"></script>
+</head>
+
+<body>
+	<div ng-controller="MainCtrl">
+		<div class="page-container" ng-view ng-animate=" 'page' ">
+		</div>
+	</div>
+</body>
+
+</html>

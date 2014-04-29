@@ -1,0 +1,303 @@
+@import 'variables.less';
+@import 'mixins.less';
+
+* { 
+	margin: 0;
+	padding: 0;
+	.box-sizing(border-box);
+}
+
+
+html {
+	height: 100%;
+	font-family: Lato, sans-serif;
+}
+
+
+body {
+	height: 100%; 
+
+	& > * {
+		height: 100%;
+	}
+}
+
+
+h1, h2, h3 {
+	font-weight: 100;
+}
+
+
+h1 {
+	font-size: 400%;
+	padding: 0 .2em;
+}
+
+
+a,
+a:link,
+a:active,
+a:hover,
+a:focus,
+a:visited {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+// ===== home screen, big menu ================================================
+
+
+[role=menu]#bigmenu {
+	
+	height: 100%;
+
+	li {
+		display: block;
+		float: left;
+		height: 100%;
+	}
+
+	
+	li:nth-last-of-type(4),
+	li:nth-last-of-type(4) ~ li {
+		width: 25%;
+	}
+
+
+	[role=menuitem] {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding-top: 50%;
+
+		font-size: 430%;
+		font-weight: 100;
+		text-align: center;
+		text-decoration: none;
+
+		cursor: pointer;
+
+		.transition(box-shadow @speed);
+
+		&:hover,
+		&:focus {
+			box-shadow: inset 0 0 120px fade(@black, 10);
+		}
+	}
+
+}
+
+
+// ===== content ==============================================================
+
+
+.content {
+	li {
+		list-style-type: none;
+
+		a {
+			display: block;
+			font-size: 120%;
+			padding: 1em;
+			background-color: @white;
+			.transition(background-color @speed);
+
+			&:hover,
+			&:focus,
+			&:active {
+				background-color: darken(@white, 5%);
+			}
+		}
+	}
+
+	aside {
+		li {
+			border-width: 2px 2px 0 0;
+			border-style: solid;
+		}
+	}
+}
+
+
+// ===== colors for topics ====================================================
+
+
+.contact {
+	&.color,
+	.color {
+		color: @green;
+	}
+
+	&.background-color,
+	.background-color {
+		color: @white;
+		background-color: @green;
+	}
+
+	&.border-color,
+	.border-color {
+		border-color: @green;
+	}
+}
+
+
+.schedule {
+	&.color,
+	.color {
+		color: @blue;
+	}
+
+	&.background-color,
+	.background-color {
+		color: @white;
+		background-color: @blue;
+	}
+
+	&.border-color,
+	.border-color {
+		border-color: @blue;
+	}
+}
+
+
+.task {
+	&.color,
+	.color {
+		color: @red;
+	}
+
+	&.background-color,
+	.background-color {
+		color: @white;
+		background-color: @red;
+	}
+
+	&.border-color,
+	.border-color {
+		border-color: @red;
+	}
+}
+
+
+.knowledge {
+	&.color,
+	.color {
+		color: @yellow;
+	}
+
+	&.background-color,
+	.background-color {
+		color: @white;
+		background-color: @yellow;
+	}
+
+	&.border-color,
+	.border-color {
+		border-color: @yellow;
+	}
+}
+
+
+// ===== grid =================================================================
+
+
+.grid {
+	height: 100%;
+}
+
+
+.row {
+	overflow: auto;
+}
+
+.column {
+	display: block;
+	height: 100%;
+	padding-right: @gutter;
+	float: left;
+
+
+	&.half { 
+		width: 50%;
+	}
+
+
+	&.third {
+		width: 33.33333%;
+	}
+
+
+	&.two-third {
+		width: 66.66666%;
+	}
+
+
+	&.fourth {
+		width: 25%;
+	}
+
+
+	&.three-fourth {
+		width: 75%;
+	}
+
+
+	&.gr-big {
+		width: 61.805%;
+	}
+
+
+	&.gr-small {
+		width: 38.195%;
+	}
+
+
+	&.last {
+		padding-right: 0;
+	}
+}
+
+
+// ===== page transition animation ============================================
+
+
+.page-container {
+	height: 100%;
+	position: relative;
+
+	& > * {
+		display: block;
+		width: 100%;
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+
+.page-enter,
+.page-leave {
+	.transition(all 1s);
+}
+
+
+.page-enter {
+	opacity: 0;
+
+	&.page-enter-active {
+		opacity: 1;
+	}
+}
+
+
+.page-leave {
+	opacty: 1;
+
+	&.page-leave-active {
+		opacity: 0;
+	}
+}

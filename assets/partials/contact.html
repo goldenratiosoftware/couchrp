@@ -1,0 +1,22 @@
+<section class="content grid row">
+
+<aside class="column gr-small contact background-color">
+	<h1>Kontakte</h1>
+	<ul>
+		<li ng-repeat="group in groups" class="border-color">
+			<a href="/group/{{ group }}" class="color">{{ group }}</a>
+		</li>
+	</ul>
+</aside>
+
+<article class="column gr-big last">
+	<ul>
+		<li>
+			<a href="/contact/new">{{ createText }}</a>
+		</li>
+		<li ng-repeat="user in users">
+			<a href="/contact/{{ user.user }}">{{ user.firstname }} <strong>{{ user.lastname }}</strong></a>
+		</li>
+	</ul>
+</article>
+</section>
